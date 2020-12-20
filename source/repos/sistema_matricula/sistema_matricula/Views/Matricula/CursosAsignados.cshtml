@@ -1,0 +1,33 @@
+﻿@model sistema_matricula.Models.Matricula
+
+@{
+    ViewBag.Title = "Alumno Matriculados";
+}
+
+<h4 class="text-left"><i class="glyphicon glyphicon-list-alt"></i> MIS CURSOS MATRICULADOS</h4>
+<br />
+
+
+
+<table class="table table-bordered ">
+    <tr style="background-color:#0b6d76;color:#fff">
+        <th>Asignatura</th>
+        <th>Alumno</th>
+        <th>Fecha de Matriculado</th>
+        <th>Periodo</th>
+    </tr>
+    @foreach (var matricula in Model.ShowallIns)
+    {
+<tr>
+    <td> @matricula.Asignatura</td>
+    <td> @matricula.Alumno</td>
+    <td> @matricula.Fecha</td>
+
+    <td> @matricula.Periodo</td>
+
+    
+
+</tr>
+    }
+</table>
+

@@ -1,0 +1,35 @@
+﻿@model sistema_matricula.Models.Periodo
+
+@{
+    ViewBag.Title = "Listado de Periodo";
+}
+
+    <h4><i class="glyphicon glyphicon-list-alt"></i> LISTADO DE PERIODOS</h4>
+<br />
+    <p>
+        <a href="/Periodo/AgregarPeriodo" class="btn btn-success" title="Agregar nuevo periodo"><i class="glyphicon glyphicon-plus"></i> NUEVO PERIODO</a>
+    </p>
+
+
+    <table class="table table-bordered ">
+        <tr style="background-color:#0b6d76;color:#fff">
+            <th>Código</th>
+            <th>Nombre Periodo</th>
+            <th>Inicio Periodo</th>
+            <th>Fin Periodo</th>
+            <th class="text-center">Editar</th>
+            @*<th class="text-center">Eliminar</th>*@
+        </tr>
+        @foreach (var ciclos in Model.ShowallPeriodo)
+        {
+    <tr>
+        <td> @ciclos.Idperiodo</td>
+        <td> @ciclos.Nomperiodo</td>
+        <td> @ciclos.Finicio</td>
+        <td> @ciclos.Ffin</td>
+        <td class="text-center"> <a href="/Periodo/EditarPeriodo?cod=@ciclos.Idperiodo" class="btn btn-warning btn-xs"> <i class="glyphicon glyphicon-edit"></i> Editar</a></td>
+        @*<td class="text-center"> <a href="/Periodo/DeletePeriodo?cod=@ciclos.Idperiodo" class="btn btn-danger btn-xs"> <i class="glyphicon glyphicon-remove"></i> Eliminar</a></td>*@
+    </tr>
+        }
+    </table>
+

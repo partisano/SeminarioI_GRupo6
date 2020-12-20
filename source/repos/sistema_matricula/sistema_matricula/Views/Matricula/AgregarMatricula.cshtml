@@ -1,0 +1,161 @@
+﻿@model sistema_matricula.Models.Matricula
+@{
+    ViewBag.Title = "Listado de Matriculas";
+}
+<div class="row">
+    <div class="col-md-12">
+        <h4><i class="glyphicon glyphicon-file"></i>  REGISTRAR NUEVA MATRICULA</h4>
+        <br />
+        @using (Html.BeginForm("AgregarMatricula"))
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background-color: #0b6d76;color: #fff">REGISTRO DE MATRICULAS</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Fecha, "FECHA DE MATRICULA:", htmlAttributes: new { @class = "control-label col-md-6 text-right" })
+                                    <div class="col-md-6">
+                                        @Html.TextBoxFor(model => model.Fecha, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+
+                                        @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Idalumno, "ALUMNO :", htmlAttributes: new { @class = "control-label col-md-6 text-right" })
+                                    <div class="col-md-6">
+                                        <select id="Idalumno" name="Idalumno" class="form-control">
+                                            <option value="">Seleccione una opcion</option>
+                                        </select>
+                                        @Html.ValidationMessageFor(model => model.Idalumno, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Idasignatura, "ASIGNATURA :", htmlAttributes: new { @class = "control-label col-md-6 text-right" })
+                                    <div class="col-md-6">
+                                        <select id="Idasignatura" name="Idasignatura" class="form-control">
+                                            <option value="">Seleccione una opcion</option>
+                                        </select>
+                                        @Html.ValidationMessageFor(model => model.Idasignatura, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Idperiodo, "PERIODO :", htmlAttributes: new { @class = "control-label col-md-6 text-right" })
+                                    <div class="col-md-6">
+                                        <select id="Idperiodo" name="Idperiodo" class="form-control">
+                                            <option value="">Seleccione una opcion</option>
+                                        </select>
+                                        @Html.ValidationMessageFor(model => model.Idperiodo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-danger"><i class="glyphicon glyphicon-save"></i> REGISTRAR MATRICULA</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-10" style="color:green">
+                                @ViewBag.Message
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.ActionLink("<< Volver al Listado", "Listado")
+
+
+
+
+        }
+    </div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $.ajax({
+            url: '/Matricula/ListAsignatura/',
+            type: 'GET',
+            datatype: 'json',
+            success: function (data) {
+                $.each(data, function (i, item) {
+                    $("#Idasignatura").append('<option value="' + item.Idasignatura + '">' + item.Asignaturas + '</option>');
+                });
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+
+    });
+
+    $(document).ready(function () {
+
+        $.ajax({
+            url: '/Matricula/ListAlumno/',
+            type: 'GET',
+            datatype: 'json',
+            success: function (data) {
+                $.each(data, function (i, item) {
+                    $("#Idalumno").append('<option value="' + item.Idalumno + '">' + item.Apellidos + ' ' + item.Nombres + '</option>');
+                });
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+
+        $.ajax({
+            url: '/Asignatura/ListPeriodo/',
+            type: 'GET',
+            datatype: 'json',
+            success: function (data) {
+                $.each(data, function (i, item) {
+                    $("#Idperiodo").append('<option value="' + item.Idperiodo + '">' + item.Nomperiodo + '</option>');
+                });
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+
+
+
+    });
+</script>
+
+
+
+

@@ -1,0 +1,37 @@
+﻿@model sistema_matricula.Models.Carreras
+
+@{
+    ViewBag.Title = "Listado de Carreras";
+}
+
+    <h4><i class="glyphicon glyphicon-list-alt"></i> LISTAR CARRERAS</h4>
+    <p>
+        <a href="/Carreras/AgregarCarreras" class="btn btn-success" title="Agregar nuevo Carreras"><i class="glyphicon glyphicon-plus"></i> NUEVA CARRERA</a>
+    </p>
+
+
+    <table class="table table-bordered ">
+        <tr style="background-color:#0b6d76;color:#fff">
+            <th>Código</th>
+            <th>Facultad</th>
+            <th>CARRERA</th>
+            <th>Num Meses</th>
+
+            <th class="text-center">Editar</th>
+            <th class="text-center">Eliminar</th>
+        </tr>
+        @foreach (var carr in Model.ShowallCarreras)
+        {
+    <tr>
+        <td> @carr.Idcarrera</td>
+        <td> @carr.Nomfacultad</td>
+        <td> @carr.Nombrecarrera</td>
+        <td> @carr.Nummeses</td>
+        
+        <td class="text-center"> <a href="/Carreras/EditarCarreras?cod=@carr.Idcarrera" class="btn btn-warning btn-xs"> <i class="glyphicon glyphicon-edit"></i> Editar</a></td>
+
+        <td class="text-center"> <a href="/Carreras/DeleteCarreras?cod=@carr.Idcarrera" class="btn btn-danger btn-xs"> <i class="glyphicon glyphicon-remove"></i> Eliminar</a></td>
+    </tr>
+        }
+    </table>
+

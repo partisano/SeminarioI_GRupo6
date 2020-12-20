@@ -1,0 +1,37 @@
+﻿@model sistema_matricula.Models.Matricula
+
+@{
+    ViewBag.Title = "Listado de Matriculas";
+}
+
+    <h4 class="text-center"><i class="glyphicon glyphicon-list-alt"></i> REGISTROS DE MATRICULAS</h4>
+<br />
+    <p>
+        <a href="/Matricula/AgregarMatricula" class="btn btn-success" title="Agregar Matricula"><i class="glyphicon glyphicon-plus"></i> NUEVA MATRICULA</a>
+    </p>
+
+
+    <table class="table table-bordered ">
+        <tr style="background-color:#0b6d76;color:#fff">
+            <th>Código</th>
+            <th>Fecha</th>
+            <th>Alumno</th>
+            <th>Asignatura</th>
+            <th>Periodo</th>
+            <th>Estado</th>
+            <th class="text-center">Anular</th>
+        </tr>
+        @foreach (var matricula in Model.ShowallMatricula)
+        {
+    <tr>
+        <td> @matricula.Idmatricula</td>
+        <td> @matricula.Fecha</td>
+        <td> @matricula.Alumno</td>
+        <td> @matricula.Asignatura</td>
+        <td> @matricula.Periodo</td>
+        <td> @matricula.Estados</td>
+        <td class="text-center"> <a href="/Matricula/DeleteMatricula?cod=@matricula.Idmatricula" class="btn btn-danger btn-xs"> <i class="glyphicon glyphicon-remove"></i> Eliminar</a></td>
+    </tr>
+        }
+    </table>
+

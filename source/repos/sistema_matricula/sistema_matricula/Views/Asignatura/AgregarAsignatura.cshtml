@@ -1,0 +1,184 @@
+﻿@model sistema_matricula.Models.Asignatura
+
+@{
+    ViewBag.Title = "Listado de Asignatura";
+
+}
+<div class="row">
+    <div class="col-md-10">
+        <h4><i class="glyphicon glyphicon-file"></i>  REGISTRAR NUEVA ASIGNATURA / CURSO</h4>
+        <br />
+        @using (Html.BeginForm("AgregarAsignatura"))
+        {
+    <div class="panel panel-default">
+        <div class="panel-heading" style="background-color: #0b6d76;color: #fff; text-align:center">NUEVA ASIGNATURA</div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Asignaturas, "Nombre de asignatura :", htmlAttributes: new { @class = "control-label col-md-3 text-right" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.Asignaturas, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Asignaturas, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Creditos, "Numero de creditos :", htmlAttributes: new { @class = "control-label col-md-3 text-right" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.Creditos, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Creditos, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Idcarrera, " Seleccione una carrera :", htmlAttributes: new { @class = "control-label col-md-3 text-right" })
+                    <div class="col-md-8">
+                        <select id="Idcarrera" name="Idcarrera" class="form-control">
+                            <option value="">Seleccione una opcion</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.Idcarrera, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Idciclo, " Seleccione un ciclo :", htmlAttributes: new { @class = "control-label col-md-3 text-right" })
+                    <div class="col-md-8">
+                        <select id="Idciclo" name="Idciclo" class="form-control">
+                            <option value="">Seleccione una opcion</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.Idciclo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Iddocente, " Seleccione un docente :", htmlAttributes: new { @class = "control-label col-md-3 text-right" })
+                    <div class="col-md-8">
+                        <select id="Iddocente" name="Iddocente" class="form-control">
+                            <option value="">Seleccione una opcion</option>
+                        </select>
+                        @Html.ValidationMessageFor(model => model.Iddocente, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            
+
+            <br />
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Costo, "Costo :", htmlAttributes: new { @class = "control-label col-md-3 text-right" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.Costo, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Costo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Numvacante, "Numero de vacantes :", htmlAttributes: new { @class = "control-label col-md-3 text-right" })
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.Numvacante, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Numvacante, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12 text-center">
+                        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Registrar Asignatura</button>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-10" style="color:green">
+                        @ViewBag.Message
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12 text-center">
+
+                        @Html.ActionLink("Ir al Listado", "Listado")
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+            </div>
+            @Html.ActionLink("Ir al Listado", "Listado")
+
+
+        }
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+    
+        $.ajax({
+            url: '/Asignatura/ListCarrera/',
+            type: 'GET',
+            datatype: 'json',
+            success: function (data) {
+                $.each(data, function (i, item) {
+                    $("#Idcarrera").append('<option value="' + item.Idcarrera + '">' + item.Nombrecarrera + '</option>');
+                });
+                                 
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+
+        $.ajax({
+            url: '/Asignatura/ListDocente/',
+            type: 'GET',
+            datatype: 'json',
+            success: function (data) {
+                $.each(data, function (i, item) {
+                    $("#Iddocente").append('<option value="' + item.Iddocente + '">' + item.Apellidos +' '+ item.Nombres + '</option>');
+                });
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+
+            $.ajax({
+            url: '/Asignatura/ListCiclo/',
+            type: 'GET',
+            datatype: 'json',
+            success: function (data) {
+                $.each(data, function (i, item) {
+                    $("#Idciclo").append('<option value="' + item.Idciclo + '">' + item.Nomciclo + '</option>');
+                });
+            },
+            error: function () {
+                console.log('Error');
+            }
+            });
+
+           
+
+    });
+
+
+</script>

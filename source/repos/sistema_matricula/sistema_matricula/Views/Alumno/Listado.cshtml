@@ -1,0 +1,37 @@
+﻿@model sistema_matricula.Models.Alumno
+
+@{
+    ViewBag.Title = "Listado de ALumnos";
+}
+
+    <h4><i class="glyphicon glyphicon-list-alt"></i> LISTAR ALUMNOS</h4>
+    <p>
+        <a href="/Alumno/Agregaralumno" class="btn btn-success" title="Agregar Alumno"><i class="glyphicon glyphicon-plus"></i> NUEVO ALUMNO</a>
+    </p>
+
+
+    <table class="table table-bordered ">
+        <tr style="background-color:#0b6d76;color:#fff">
+            <th>Código</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>DNI</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th class="text-center">Editar</th>
+        </tr>
+        @foreach (var alumnos in Model.ShowallAlumno)
+        {
+    <tr>
+        <td> @alumnos.Idalumno</td>
+        <td> @alumnos.Apellidos</td>
+        <td> @alumnos.Nombres</td>
+        <td> @alumnos.DNI</td>
+        <td> @alumnos.Direccion</td>
+        <td> @alumnos.Telefono</td>
+        <td class="text-center"> <a href="/Alumno/EditarAlumno?cod=@alumnos.Idalumno" class="btn btn-warning btn-xs"> <i class="glyphicon glyphicon-edit"></i> Editar</a></td>
+       
+    </tr>
+        }
+    </table>
+

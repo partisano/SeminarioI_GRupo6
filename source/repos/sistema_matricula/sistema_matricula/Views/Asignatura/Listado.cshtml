@@ -1,0 +1,40 @@
+﻿@model sistema_matricula.Models.Asignatura
+
+@{
+    ViewBag.Title = "Listado de Asignatura";
+}
+
+    <h4><i class="glyphicon glyphicon-list-alt"></i> LISTAR CURSOS / ASIGNATURAS</h4>
+    <p>
+        <a href="/Asignatura/AgregarAsignatura" class="btn btn-success" title="Agregar nuevo asignaturas"><i class="glyphicon glyphicon-plus"></i> NUEVA CURSO / ASIGNATURA</a>
+    </p>
+
+
+    <table class="table table-bordered ">
+        <tr style="background-color:#0b6d76;color:#fff">
+            <th># Código</th>
+            <th>CURSO / ASIGNATURA</th>
+            <th>CREDITOS</th>
+            <th>CARRERA</th>
+            <th>CICLO</th>
+            <th>DOCENTE</th>
+            <th>COSTO</th>
+            <th>NUMVACANTES</th>
+            <th class="text-center">Anular</th>
+        </tr>
+        @foreach (var carr in Model.ShowallAsignatura)
+        {
+    <tr>
+        <td> @carr.Idasignatura</td>
+        <td> @carr.Asignaturas</td>
+        <td> @carr.Creditos</td>
+        <td> @carr.Carrera</td>
+        <td> @carr.Ciclo</td>
+        <td> @carr.Docente</td>
+        <td> @carr.Costo</td>
+        <td> @carr.Numvacante</td>
+        <td class="text-center"> <a href="/Asignatura/DeleteAsignatura?cod=@carr.Idasignatura" class="btn btn-danger btn-xs"> <i class="glyphicon glyphicon-remove"></i> Eliminar</a></td>
+    </tr>
+        }
+    </table>
+

@@ -1,0 +1,30 @@
+﻿@model sistema_matricula.Models.Alumno
+
+@{
+    ViewBag.Title = "Listado de Alumnos";
+}
+
+    <h4><i class="glyphicon glyphicon-list"></i>  ALUMNOS</h4>
+    
+
+    <table class="table table-bordered ">
+        <tr style="background-color:#0b6d76;color:#fff">
+            <th>Código</th>
+            <th>DNI</th>
+            <th>Apellidos Nombres</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+        </tr>
+        @foreach (var alumnos in Model.ShowallAlumno)
+        {
+    <tr>
+        <td> @alumnos.Idalumno</td>
+        <td> @alumnos.DNI</td>
+        <td> @alumnos.Apellidos  , @alumnos.Nombres</td>
+        <td> @alumnos.Direccion</td>
+        <td> @alumnos.Telefono</td>
+
+    </tr>
+        }
+    </table>
+

@@ -1,0 +1,112 @@
+﻿@model sistema_matricula.Models.Carreras
+
+@{
+    ViewBag.Title = "Editar de Carreras";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h4><i class="glyphicon glyphicon-edit"></i>  EDITAR CARRERA</h4>
+
+        <br />
+        @using (Html.BeginForm())
+        {
+
+            @Html.HiddenFor(model => model.Idcarrera)
+            <div class="panel panel-default">
+                <div class="panel-heading bg-primary" style="background-color: #0b6d76;color: #fff"><b>EDITANDO</b> </div>
+                <div class="panel-body">
+
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nombrecarrera, "Nombre de carrera :", htmlAttributes: new { @class = "control-label col-md-4 text-right" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.Nombrecarrera, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Nombrecarrera, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nummeses, "Número de meses :", htmlAttributes: new { @class = "control-label col-md-4 text-right" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.Nummeses, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Nummeses, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Idfacultad, " Facultad :", htmlAttributes: new { @class = "control-label col-md-4 text-right" })
+                            <div class="col-md-8">
+                                <select id="Idfacultad" name="Idfacultad" class="form-control">
+                                    <option value="">Seleccione una opcion</option>
+                                </select>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <br />
+
+
+
+
+                    <div class="row">
+                        <div class="form-group"></div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <br>
+                                <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Modificar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-10" style="color:green">
+                                @ViewBag.Message
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            @Html.ActionLink("<< Ir al Listado", "Listado")
+
+        }
+    </div>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $.ajax({
+            url: '/Carreras/List/',
+            type: 'GET',
+            datatype: 'json',
+            success: function (data) {
+                $.each(data, function (i, item) {
+                    $("#Idfacultad").append('<option value="' + item.Idfacultad + '">' + item.Nomfacultad + '</option>');
+                });
+
+                   // $("#combobox").append('<option value="' + item.Idfacultad + '">' + item.Nomfacultad + '</option>');
+
+            },
+            error: function () {
+                console.log('Error');
+            }
+        });
+
+    });
+
+
+</script>
+
+

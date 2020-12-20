@@ -1,0 +1,30 @@
+﻿@model sistema_matricula.Models.Facultad
+
+@{
+    ViewBag.Title = "Listado de Facultades";
+}
+
+    <h4><i class="glyphicon glyphicon-list-alt"></i> LISTAR FACULTADES</h4>
+    <p>
+        <a href="/Facultad/AgregarFacultad" class="btn btn-success" title="Agregar nuevo Facultad"><i class="glyphicon glyphicon-plus"></i> NUEVA FACULTAD</a>
+    </p>
+
+
+    <table class="table table-bordered ">
+        <tr style="background-color:#0b6d76;color:#fff">
+            <th>Código</th>
+            <th>Facultad</th>
+            <th class="text-center">Editar</th>
+            <th class="text-center">Eliminar</th>
+        </tr>
+        @foreach (var facultad in Model.ShowallFacultad)
+        {
+            <tr>
+                <td> @facultad.Idfacultad</td>
+                <td> @facultad.Nomfacultad</td>
+                <td class="text-center"> <a href="/Facultad/EditarFacultad?cod=@facultad.Idfacultad" class="btn btn-warning btn-xs"> <i class="glyphicon glyphicon-edit"></i> Editar</a></td>
+                <td class="text-center"> <a href="/Facultad/DeleteFacultad?cod=@facultad.Idfacultad" class="btn btn-danger btn-xs"> <i class="glyphicon glyphicon-remove"></i> Eliminar</a></td>
+            </tr>
+        }
+    </table>
+

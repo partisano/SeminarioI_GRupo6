@@ -1,0 +1,30 @@
+﻿@model sistema_matricula.Models.Ciclo
+
+@{
+    ViewBag.Title = "Listado de Ciclos";
+}
+
+    <h4><i class="glyphicon glyphicon-list-alt"></i> LISTAR CICLOS</h4>
+    <p>
+        <a href="/Ciclo/Agregarciclo" class="btn btn-success" title="Agregar nuevo ciclo"><i class="glyphicon glyphicon-plus"></i> NUEVO CICLO</a>
+    </p>
+
+
+    <table class="table table-bordered ">
+        <tr style="background-color:#0b6d76;color:#fff">
+            <th>Código</th>
+            <th>Nombre Ciclo</th>
+            <th class="text-center">Editar</th>
+            <th class="text-center">Eliminar</th>
+        </tr>
+        @foreach (var ciclos in Model.ShowallCiclo)
+        {
+            <tr>
+                <td> @ciclos.Idciclo</td>
+                <td> @ciclos.Nomciclo</td>
+                <td class="text-center"> <a href="/Ciclo/EditarCiclo?cod=@ciclos.Idciclo" class="btn btn-warning btn-xs"> <i class="glyphicon glyphicon-edit"></i> Editar</a></td>
+                <td class="text-center"> <a href="/Ciclo/DeleteCiclo?cod=@ciclos.Idciclo" class="btn btn-danger btn-xs"> <i class="glyphicon glyphicon-remove"></i> Eliminar</a></td>
+            </tr>
+        }
+    </table>
+

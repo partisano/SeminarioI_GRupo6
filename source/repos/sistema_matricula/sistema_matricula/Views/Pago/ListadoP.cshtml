@@ -1,0 +1,35 @@
+﻿@model sistema_matricula.Models.Pago
+
+@{
+    ViewBag.Title = "Listado de Pagos";
+}
+
+    <h4 class="text-center"><i class="glyphicon glyphicon-list-alt"></i> REGISTRO DE PAGOS</h4>
+    <p>
+        <a href="/Pago/AgregarPagoAlumno" class="btn btn-danger" title="Agregar Pago"><i class="glyphicon glyphicon-plus"></i> REGISTRAR PAGO</a>
+    </p>
+
+
+    <table class="table table-bordered ">
+        <tr style="background-color:#0b6d76;color:#fff">
+            <th>Código</th>
+            <th>Fecha de Pago</th>
+            <th>Trámite</th>
+            <th>Alumno</th>
+            <th>Observación</th>
+
+        </tr>
+
+        @foreach (var pagos in Model.AllPagos)
+        {
+    <tr>
+        <td> @pagos.Idpago</td>
+        <td> @pagos.FechaPago</td>
+        <td> @pagos.CTramite</td>
+        <td> @pagos.CAlumno</td>
+        <td> @pagos.Observacion</td>
+
+          </tr>
+        }
+    </table>
+

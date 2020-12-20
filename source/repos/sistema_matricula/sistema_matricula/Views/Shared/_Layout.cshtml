@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -MATRICULA</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style type="text/css">
+        .navbar-inverse .navbar-nav > li > a {
+            color: #ffffff;
+            font-weight:bold
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #0b6d76;color: #fff">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+             
+                <div style="margin-top:5px">
+                   <h4><i class="glyphicon glyphicon-hdd"></i> SOLIER </h4>
+
+                </div>
+  
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li></li>
+                    @{
+                        if (Session["UserName"] == null)
+                        {
+
+
+                        }
+                        else
+                        {
+
+
+                            <li> @Html.ActionLink("Inicio", "Index", "Home")</li>
+
+                            if (Convert.ToString(Session["TipoUser"]) == "Administrador")
+                            {
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Escuelas</span> <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li>@Html.ActionLink("Asignatura", "Listado", "Asignatura")</li>
+                                        <li>@Html.ActionLink("Carreras", "Listado", "Carreras")</li>
+                                        <li>@Html.ActionLink("Facultad", "Listado", "Facultad")</li>
+                                        <li>@Html.ActionLink("Ciclo", "Listado", "Ciclo")</li>
+                                        <li>@Html.ActionLink("Periodo", "Listado", "Periodo")</li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Personas</span> <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li>@Html.ActionLink("Alumnos", "Listado", "Alumno")</li>
+                                        <li>@Html.ActionLink("Docentes", "Listado", "Docentes")</li>
+                                        <li>@Html.ActionLink("Usuario", "Listado", "Usuario")</li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Movimientos</span> <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li>@Html.ActionLink("Matricula", "Listado", "Matricula")</li>
+                              
+                                        <li>@Html.ActionLink("Matriculados", "Listar", "Matricula")</li>
+                                        <li>@Html.ActionLink("Tramite", "Listado", "Tramite")</li>
+                                        <li>@Html.ActionLink("Pago", "Listado", "Pago")</li>
+                                    </ul>
+                                </li>
+                                <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                            }
+                            else if (Convert.ToString(Session["TipoUser"]) == "Alumno")
+                            {
+                                <li>@Html.ActionLink("Cursos Disponibles", "ListarC", "Asignatura")</li>
+                                <li>@Html.ActionLink("Mis Cursos", "Mimatricula", "Matricula")</li>
+                                <li>@Html.ActionLink("Pago", "ListadoP", "Pago")</li>
+
+                            }
+                            else if (Convert.ToString(Session["TipoUser"]) == "Docente")
+                            {
+                                <li>@Html.ActionLink("Mis Cursos", "MisAsignaturas", "Asignatura")</li>
+                                <li>@Html.ActionLink("Mis Alumnos", "CursosAsignados", "Matricula")</li>
+                            }
+                            else if (Convert.ToString(Session["TipoUser"]) == "Academico")
+                            {
+                                <li>@Html.ActionLink("Matriculados", "Listar", "Matricula")</li>
+                                <li>@Html.ActionLink("Alumnos", "Listar", "Alumno")</li>
+                                <li>@Html.ActionLink("Pago", "Listar", "Pago")</li>
+                            }
+                            else if (Convert.ToString(Session["TipoUser"]) == "Escuela")
+                            {
+                                <li>@Html.ActionLink("Matriculados", "Listar", "Matricula")</li>
+                                <li>@Html.ActionLink("Alumnos", "Listar", "Alumno")</li>
+                                <li>@Html.ActionLink("Pago", "Listar", "Pago")</li>
+                            }
+                            else if (Convert.ToString(Session["TipoUser"]) == "Director")
+                            {
+                                <li>@Html.ActionLink("Matriculados", "Listar", "Matricula")</li>
+                                <li>@Html.ActionLink("Alumnos", "Listar", "Alumno")</li>
+                                <li>@Html.ActionLink("Pago", "Listar", "Pago")</li>
+                            }
+                            else if (Convert.ToString(Session["TipoUser"]) == "Decano")
+                            {
+
+                                <li>@Html.ActionLink("Matriculados", "Listar", "Matricula")</li>
+                                <li>@Html.ActionLink("Alumnos", "Listar", "Alumno")</li>
+                                <li>@Html.ActionLink("Pago", "Listar", "Pago")</li>
+                            }
+                            else
+                            {
+
+
+
+
+                            }
+
+
+
+
+
+                            <li> </li>
+
+                            <li> </li>
+
+
+                            <li class="text-right" style="padding:10px 0px 10px 20px; text-transform:uppercase"><h4>@Session["TipoUser"] : @Session["UserName"]</h4></li>
+                            <li style="padding:10px 0px 10px 20px; text-transform:uppercase;color:#ffffff">@Html.ActionLink("Cerrar Sesion", "LogOut", "Login")</li>
+                        }
+                    }
+                </ul>
+               
+
+
+
+
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        <br /> <br />
+        @RenderBody()
+        <br /><br />
+        <footer>
+            <div class="col-lg-12 text-center">  <p>&copy; @DateTime.Now.Year -Sistema de Matricula</p></div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

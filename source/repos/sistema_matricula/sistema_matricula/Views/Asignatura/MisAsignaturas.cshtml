@@ -1,0 +1,40 @@
+﻿@model sistema_matricula.Models.Asignatura
+
+@{
+    ViewBag.Title = "Listado de Asignatura";
+}
+
+<h4><i class="glyphicon glyphicon-list-alt"></i> CURSOS / ASIGNATURAS</h4>
+
+
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-10" style="color:green">
+            @ViewBag.Message
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered ">
+    <tr style="background-color:#0b6d76;color:#fff">
+        <th>N° COD</th>
+        <th>ASIGNATURA</th>
+        <th>CARRERA</th>
+        <th>CREDITOS</th>
+        <th>CICLO</th>
+        <th>NUMVACANTES</th>
+    </tr>
+    @foreach (var carr in Model.MisAsignaturas)
+    {
+<tr>
+    <td> @carr.Idasignatura</td>
+    <td> @carr.Asignaturas</td>
+    <td> @carr.Carrera</td>
+    <td> @carr.Creditos</td>
+    <td> @carr.Ciclo</td>
+    <td> @carr.Numvacante</td>
+    
+</tr>
+    }
+</table>
+

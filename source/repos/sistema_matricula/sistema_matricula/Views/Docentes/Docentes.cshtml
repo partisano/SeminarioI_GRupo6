@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Listado de Docentes";
+}
+
+<h2>Registro de Docentes</h2>
+
+<form>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Ape" class="control-label">Apellidos:</label>
+                <input asp-for="Ape" class="form-control" />
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Nom" class="control-label">Nombres:</label>
+                <input asp-for="Nom" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="dni" class="control-label">DNI:</label>
+                <input asp-for="dni" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="celular" class="control-label">Celular:</label>
+                <input asp-for="celular" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="form-group">
+                <input type="submit" value="GUARDAR" class="btn btn-success" />
+            </div>
+        </div>
+
+    </div>
+
+
+</form>

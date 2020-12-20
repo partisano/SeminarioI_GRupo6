@@ -1,0 +1,36 @@
+﻿@model sistema_matricula.Models.Docente
+
+@{
+    ViewBag.Title = "Listado de Docentes";
+}
+
+    <h4><i class="glyphicon glyphicon-list-alt"></i> LISTAR DOCENTES</h4>
+    <p>
+        <a href="/Docentes/Agregardocente" class="btn btn-success" title="Agregar Docente"><i class="glyphicon glyphicon-plus"></i> NUEVO DOCENTE</a>
+    </p>
+
+
+    <table class="table table-bordered ">
+        <tr style="background-color:#0b6d76;color:#fff">
+            <th>Código</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th class="text-center">Editar</th>
+            @*<th class="text-center">Eliminar</th>*@
+        </tr>
+        @foreach (var docentes in Model.ShowallDocente)
+        {
+    <tr>
+        <td> @docentes.Iddocente</td>
+        <td> @docentes.Apellidos</td>
+        <td> @docentes.Nombres</td>
+        <td> @docentes.Direccion</td>
+        <td> @docentes.Celular</td>
+        <td class="text-center"> <a href="/Docentes/EditarDocente?cod=@docentes.Iddocente" class="btn btn-warning btn-xs"> <i class="glyphicon glyphicon-edit"></i> Editar</a></td>
+        @*<td class="text-center"> <a href="/Docentes/DeleteDocente?cod=@docentes.Iddocente" class="btn btn-danger btn-xs"> <i class="glyphicon glyphicon-remove"></i> Eliminar</a></td>*@
+    </tr>
+        }
+    </table>
+

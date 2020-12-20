@@ -1,0 +1,59 @@
+﻿@model sistema_matricula.Models.Matricula
+
+@{
+    ViewBag.Title = "Alumno Matriculados";
+}
+
+    <h4 class="text-left"><i class="glyphicon glyphicon-list-alt"></i> ALUMNOS MATRICULADOS</h4>
+<br />
+ 
+
+
+    <table class="table table-bordered ">
+        <tr style="background-color:#0b6d76;color:#fff">
+            <th>Código</th>
+            <th>Fecha</th>
+            <th>Alumno</th>
+            <th>Asignatura</th>
+            <th>Periodo</th>
+            <th>Estado</th>
+            <th class="text-center">Aprobar/Pendiente</th>
+        </tr>
+        @foreach (var matricula in Model.ShowallMatricula)
+        {
+    <tr>
+        <td> @matricula.Idmatricula</td>
+        <td> @matricula.Fecha</td>
+        <td> @matricula.Alumno</td>
+        <td> @matricula.Asignatura</td>
+        <td> @matricula.Periodo</td>
+        <td>
+            @if (@matricula.Estados == "PENDIENTE")
+            {
+
+                <span class="label label-danger"> @matricula.Estados</span>
+            }
+            else
+            {
+                <span class="label label-success"> @matricula.Estados</span>
+            }
+        </td>
+        @if (@matricula.Estados == "PENDIENTE")
+        {
+            <td class="text-center"> <a href="/Matricula/Aprobar?cod=@matricula.Idmatricula" class="btn btn-success btn-xs"> <i class="glyphicon glyphicon-chevron-down"></i> APROBAR</a></td>
+
+        }
+        else
+        {
+
+    <td class="text-center"> <a href="/Matricula/Desaprobar?cod=@matricula.Idmatricula" class="btn btn-danger btn-xs"> <i class="glyphicon glyphicon-chevron-down"></i> DESAPROBAR</a></td>
+        }
+
+
+
+
+
+    </tr>
+        }
+    </table>
+

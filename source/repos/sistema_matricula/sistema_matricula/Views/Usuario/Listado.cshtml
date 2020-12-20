@@ -1,0 +1,42 @@
+﻿@model sistema_matricula.Models.Usuarios
+
+@{
+    ViewBag.Title = "Listado de Usuario";
+}
+
+    <h4><i class="glyphicon glyphicon-list-alt"></i> LISTADO DE USUARIOS</h4>
+    <p>
+        <a href="/Usuario/AgregarUsuario" class="btn btn-success" title="Agregar nuevo usuario"><i class="glyphicon glyphicon-plus"></i> NUEVO USUARIO</a>
+    </p>
+
+
+    <table class="table table-bordered ">
+        <tr style="background-color:#0b6d76;color:#fff">
+            <th>Código</th>
+            <th>Nombres</th>
+            <th>Usuario</th>
+            <th>Tipo</th>
+            <th class="text-center">Cambiar Clave</th>
+            <th class="text-center">Eliminar</th>
+        </tr>
+        @foreach (var usuario in Model.ShowallUsuario)
+        {
+    <tr>
+        <td> @usuario.Idusuario</td>
+        <td> @usuario.Nombres</td>
+        <td> @usuario.Usuario</td>
+        <td> @usuario.Tipo</td>
+        <td class="text-center"> <a href="/Usuario/EditarUsuario?cod=@usuario.Idusuario" class="btn btn-warning btn-xs"> <i class="glyphicon glyphicon-edit"></i> Reset Password</a></td>
+
+        @if (@usuario.Tipo == "Alumno" || usuario.Tipo == "Docente")
+        {
+            <td class="text-center"></td>
+                }
+                else
+                {
+            <td class="text-center"> <a href="/Usuario/DeleteUsuario?cod=@usuario.Idusuario" class="btn btn-danger btn-xs"> <i class="glyphicon glyphicon-remove"></i> Eliminar</a></td>
+            }
+        </tr>
+        }
+    </table>
+

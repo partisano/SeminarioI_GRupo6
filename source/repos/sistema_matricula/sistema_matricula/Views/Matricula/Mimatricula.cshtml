@@ -1,0 +1,46 @@
+﻿@model sistema_matricula.Models.Matricula
+
+@{
+    ViewBag.Title = "Alumno Matriculados";
+}
+
+<h4 class="text-left"><i class="glyphicon glyphicon-list-alt"></i> MIS CURSOS MATRICULADOS</h4>
+<br />
+
+
+
+<table class="table table-bordered ">
+    <tr style="background-color:#0b6d76;color:#fff">
+        <th>Código</th>
+        <th>Fecha de Inscripción</th>
+
+        <th>Asignatura</th>
+        <th>Periodo</th>
+        <th>Estado de Matricula</th>
+    </tr>
+    @foreach (var matricula in Model.ShowallIns)
+    {
+        <tr>
+            <td> @matricula.Idmatricula</td>
+            <td> @matricula.Fecha</td>
+            <td> @matricula.Asignatura</td>
+            <td> @matricula.Periodo</td>
+
+            <td>
+
+                @if (@matricula.Estados == "PENDIENTE")
+                {
+
+                    <span class="label label-danger"> @matricula.Estados</span>
+                }
+                else
+                {
+                    <span class="label label-success"> @matricula.Estados</span>
+                }
+
+            </td>
+
+        </tr>
+    }
+</table>
+

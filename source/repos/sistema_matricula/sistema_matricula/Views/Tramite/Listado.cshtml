@@ -1,0 +1,32 @@
+﻿@model sistema_matricula.Models.Tramite
+
+@{
+    ViewBag.Title = "Listado de Tramite";
+}
+
+    <h4><i class="glyphicon glyphicon-list-alt"></i> LISTAR TRAMITE</h4>
+    <p>
+        <a href="/Tramite/AgregarTramite" class="btn btn-success" title="Agregar nuevo Tramite"><i class="glyphicon glyphicon-plus"></i> NUEVO TRAMITE</a>
+    </p>
+
+
+    <table class="table table-bordered ">
+        <tr style="background-color:#0b6d76;color:#fff">
+            <th>Código</th>
+            <th>Descripcion de Tramite</th>
+            <th>Derecho de Costo</th>
+            <th class="text-center">Editar</th>
+            <th class="text-center">Eliminar</th>
+        </tr>
+        @foreach (var tramite in Model.ShowallTramite)
+        {
+    <tr>
+        <td> @tramite.Idtramite</td>
+        <td> @tramite.Tramites</td>
+        <td>S/. @tramite.Costo</td>
+        <td class="text-center"> <a href="/Tramite/EditarTramite?cod=@tramite.Idtramite" class="btn btn-warning btn-xs"> <i class="glyphicon glyphicon-edit"></i> Editar</a></td>
+        <td class="text-center"> <a href="/Tramite/DeleteTramite?cod=@tramite.Idtramite" class="btn btn-danger btn-xs"> <i class="glyphicon glyphicon-remove"></i> Eliminar</a></td>
+    </tr>
+        }
+    </table>
+

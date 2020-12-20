@@ -1,0 +1,86 @@
+﻿@model sistema_matricula.Models.Usuarios
+@{
+    ViewBag.Title = "Listado de Usuarios";
+}
+<div class="row">
+    <div class="col-md-12">
+        <h4><i class="glyphicon glyphicon-file"></i>  REGISTRAR NUEVO USUARIO</h4>
+        <br />
+        @using (Html.BeginForm("AgregarUsuario"))
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background-color: #0b6d76;color: #fff">NUEVO USUARIO</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nombres, "Nombres :", htmlAttributes: new { @class = "control-label col-md-4 text-right" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.Nombres, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Usuario, "Usuario :", htmlAttributes: new { @class = "control-label col-md-4 text-right" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.Usuario, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Usuario, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Clave, "Clave :", htmlAttributes: new { @class = "control-label col-md-4 text-right" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.Clave, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                                @Html.ValidationMessageFor(model => model.Clave, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Tipo, "Tipo Nivel :", htmlAttributes: new { @class = "control-label col-md-4 text-right" })
+                            <div class="col-md-8">
+                                @{
+                                    List<SelectListItem> lst = new List<SelectListItem>();
+                                    lst.Add(new SelectListItem() { Text = "Administrador", Value = "Administrador" });
+                                    //lst.Add(new SelectListItem() { Text = "Alumno", Value = "Alumno" });
+                                    //lst.Add(new SelectListItem() { Text = "Docente", Value = "Docente" });
+                                    lst.Add(new SelectListItem() { Text = "Secretario Academico", Value = "Academico" });
+                                    lst.Add(new SelectListItem() { Text = "Secretario de Escuela", Value = "Escuela" });
+                                    lst.Add(new SelectListItem() { Text = "Director", Value = "Director" });
+                                    lst.Add(new SelectListItem() { Text = "Decano", Value = "Decano" });
+                                }
+                                @Html.DropDownListFor(model => model.Tipo, lst, "-- SELECCIONAR  ---", new { @class = "form-control"})
+                                @Html.ValidationMessageFor(model => model.Tipo, "", new { @class = "text-danger" })
+                            </div>
+                            </div>
+                        </div>
+                    
+                    <br />
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-10" style="color:green">
+                                @ViewBag.Message
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.ActionLink("Ir al Listado", "Listado")
+
+        }
+    </div>
+</div>
